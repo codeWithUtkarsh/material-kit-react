@@ -1,9 +1,9 @@
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
-import { Box, ButtonBase } from '@mui/material';
+import { Box, ButtonBase, Typography } from '@mui/material';
 
 export const SideNavItem = (props) => {
-  const { active = false, disabled, external, icon, path, title } = props;
+  const { active = false, disabled, external, icon, path, title, beta } = props;
 
   const linkProps = path
     ? external
@@ -58,24 +58,44 @@ export const SideNavItem = (props) => {
           </Box>
         )}
         <Box
-          component="span"
           sx={{
-            color: 'neutral.400',
-            flexGrow: 1,
-            fontFamily: (theme) => theme.typography.fontFamily,
-            fontSize: 14,
-            fontWeight: 600,
-            lineHeight: '24px',
-            whiteSpace: 'nowrap',
-            ...(active && {
-              color: 'common.white'
-            }),
-            ...(disabled && {
-              color: 'neutral.500'
-            })
+            display: 'flex',
+            flexDirection: 'column', // Display Beta label below the title
           }}
         >
-          {title}
+          <Typography
+            component="span"
+            sx={{
+              color: 'neutral.400',
+              fontFamily: (theme) => theme.typography.fontFamily,
+              fontSize: 14,
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              ...(active && {
+                color: 'common.white'
+              }),
+              ...(disabled && {
+                color: 'neutral.500'
+              })
+            }}
+          >
+            {title}
+          </Typography>
+          {beta && (
+            <Typography
+              variant="body2"
+              sx={{
+                fontSize: '0.8rem',
+                marginLeft: '80px',
+                fontFamily: 'sans-serif',
+                marginTop: '-8px',
+                color: '#87CEEB',
+                opacity: 0.5,
+              }}
+            >
+              Beta
+            </Typography>
+          )}
         </Box>
       </ButtonBase>
     </li>
@@ -88,5 +108,6 @@ SideNavItem.propTypes = {
   external: PropTypes.bool,
   icon: PropTypes.node,
   path: PropTypes.string,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  beta: PropTypes.bool, // Add beta prop type
 };

@@ -71,7 +71,7 @@ export const SideNav = (props) => {
                 color="inherit"
                 variant="subtitle1"
               >
-                Devias
+                QAComorade
               </Typography>
               <Typography
                 color="neutral.400"
@@ -84,7 +84,7 @@ export const SideNav = (props) => {
               fontSize="small"
               sx={{ color: 'neutral.500' }}
             >
-              <ChevronUpDownIcon />
+              {/* <ChevronUpDownIcon /> */}
             </SvgIcon>
           </Box>
         </Box>
@@ -118,6 +118,7 @@ export const SideNav = (props) => {
                   key={item.title}
                   path={item.path}
                   title={item.title}
+                  beta={item.beta}
                 />
               );
             })}
@@ -140,7 +141,7 @@ export const SideNav = (props) => {
             color="neutral.500"
             variant="body2"
           >
-            Check out our Pro solution template.
+            Write to us about your use case.
           </Typography>
           <Box
             sx={{
@@ -153,10 +154,10 @@ export const SideNav = (props) => {
               }
             }}
           >
-            <img
+            {/* <img
               alt="Go to pro"
               src="/assets/devias-kit-pro.png"
-            />
+            /> */}
           </Box>
           <Button
             component="a"
@@ -166,12 +167,12 @@ export const SideNav = (props) => {
               </SvgIcon>
             )}
             fullWidth
-            href="https://material-kit-pro-react.devias.io/"
+            href="mailto:utkarshkviim@gmail.com"
             sx={{ mt: 2 }}
             target="_blank"
             variant="contained"
           >
-            Pro Live Preview
+            Send Email
           </Button>
         </Box>
       </Box>

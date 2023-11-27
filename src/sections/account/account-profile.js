@@ -13,8 +13,8 @@ const user = {
   avatar: '/assets/avatars/avatar-anika-visser.png',
   city: 'Los Angeles',
   country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Anika Visser',
+  jobTitle: 'Project Manager',
+  name: 'Jess Taylor',
   timezone: 'GTM-7'
 };
 
