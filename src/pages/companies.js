@@ -31,7 +31,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Companies | Devias Kit
+        Companies | QAComorad
       </title>
     </Head>
     <Box

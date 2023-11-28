@@ -23,13 +23,19 @@ const Page = () => {
       console.log('Form submitted with data:', d);
       
       const blobServiceClient = BlobServiceClient.fromConnectionString('BlobEndpoint=https://utkarshdemorg8b53.blob.core.windows.net/;QueueEndpoint=https://utkarshdemorg8b53.queue.core.windows.net/;FileEndpoint=https://utkarshdemorg8b53.file.core.windows.net/;TableEndpoint=https://utkarshdemorg8b53.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiyx&se=2025-11-26T00:55:50Z&st=2023-11-25T16:55:50Z&spr=https,http&sig=zSAsd2SMD86z3a9EPpvMa%2Bxhe9%2B828nLhkhlD3h5iw0%3D');
-      const containerClient = blobServiceClient.getContainerClient('demo-project/'+d['language']+'/'+ d['description']);
+      const containerClient = blobServiceClient.getContainerClient('demo-project');
+      const parent = d['language']
+      const child = d['description']
 
-      // Iterate through the blobs in the container
       for await (const blob of containerClient.listBlobsFlat()) {
-        const blobClient = containerClient.getBlobClient(blob.name);
-        const blobContent = await blobClient.downloadToBuffer();
-        zip.file(blob.name, blobContent);
+        const blobArr = blob.name.split('/')
+        
+        console.log('Form submitted with data:', blobArr[0] == parent && child.includes(blobArr[1]));
+        if(blobArr[0] == parent && child.includes(blobArr[1])){
+          const blobClient = containerClient.getBlobClient(blob.name);
+          const blobContent = await blobClient.downloadToBuffer();
+          zip.file(blob.name, blobContent);
+        }
       }
     };
 
@@ -62,7 +68,7 @@ const Page = () => {
       </Head>
       <Box mt={3}>
         <Typography variant="h4" gutterBottom>
-          Enter your details
+          Enter your project details
         </Typography>
         <MyForm key={refreshKey} onSubmit={handleFormSubmit} />
       </Box>
@@ -119,7 +125,7 @@ const MyForm = ({ onSubmit }) => {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Group"
+            label="GroupID"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -130,7 +136,7 @@ const MyForm = ({ onSubmit }) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Artifact"
+            label="Project Name"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -152,7 +158,7 @@ const MyForm = ({ onSubmit }) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            label="Description"
+            label="Describe your application"
             variant="outlined"
             fullWidth
             margin="normal"
@@ -185,7 +191,7 @@ const MyForm = ({ onSubmit }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            label="Language"
+            label="Programming Language"
             variant="outlined"
             fullWidth
             margin="normal"

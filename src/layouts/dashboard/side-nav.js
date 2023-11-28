@@ -156,7 +156,7 @@ export const SideNav = (props) => {
           >
             {/* <img
               alt="Go to pro"
-              src="/assets/devias-kit-pro.png"
+              src="/assets/qacomorad-kit-pro.png"
             /> */}
           </Box>
           <Button
